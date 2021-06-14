@@ -1,6 +1,14 @@
 //Dependencies
 import express, { Application, Request, Response, NextFunction } from 'express';
 import path from 'path';
+const { Client } = require('pg');
+const client = new Client();
+await client.connect();
+const res = await client.query('Select $1::text as message', ['Postgres'])
+console.log(res.rows[0].message);
+await client.end();
+
+
 const app: Application = express();
 const func = require('./simple/func');
 
