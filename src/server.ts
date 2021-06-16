@@ -1,12 +1,18 @@
 //Dependencies
 import express, { Application, Request, Response, NextFunction } from 'express';
 import path from 'path';
+
 const { Client } = require('pg');
 const client = new Client();
-await client.connect();
-const res = await client.query('Select $1::text as message', ['Postgres'])
-console.log(res.rows[0].message);
-await client.end();
+
+
+client.connect();
+client.query('SELECT $1::text as message', ['Postgres'], (err: string, res:string) => {
+  console.log(err ? "err" + err : res)
+  client.end();
+})
+
+
 
 
 const app: Application = express();
@@ -45,8 +51,11 @@ app.get('/api/customers', (req: Request, res: Response, next: NextFunction) => {
      res.send(customers);
 });
 
+
 //Start the Server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`running on port ${PORT}`);
 });
+
+
