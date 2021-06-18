@@ -5,10 +5,17 @@ import path from 'path';
 const { Client } = require('pg');
 const client = new Client();
 
+interface rows {
+  rows: any
+}
+
 
 client.connect();
-client.query('SELECT $1::text as message', ['Postgres'], (err: string, res:string) => {
-  console.log(err ? "err" + err : res)
+client.query('SELECT $1::text as message', ['Postgres'], (err: string, res:rows) => {
+  let rows: Array<any> = [];
+  rows = res.rows;
+  // rows.map((row) => {row.message})
+  console.log(err ? "err" + err : rows.map(row => row.message))
   client.end();
 })
 
