@@ -14,7 +14,7 @@ client.connect();
 client.query('SELECT $1::text as message', ['Postgres'], (err: string, res:rows) => {
   let rows: Array<any> = [];
   rows = res.rows;
-  rows.map((row) => {row.message})
+  // rows.map((row) => {row.message})
   console.log(err ? "err" + err : rows.map(row => row.message))
   client.end();
 })
