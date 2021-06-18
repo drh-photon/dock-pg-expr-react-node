@@ -5,7 +5,7 @@
   "main": "server.js",
   "proxy": "http://localhost:3001",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=testing ava -c 1 ./dist/tests",
     "server": "nodemon src/server.ts",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "tsc -p .",
@@ -33,5 +33,11 @@
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
     "ava": "^3.15.0"
+  },
+  "ava": {
+    "files": [
+      "dist/tests/*.js",
+      "dist/tests/**/*.js"
+    ]
   }
 }
