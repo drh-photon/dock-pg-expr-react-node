@@ -5,7 +5,7 @@
   "main": "server.js",
   "proxy": "http://localhost:3001",
   "scripts": {
-    "test": "NODE_ENV=testing ava -c 1 ./dist/tests",
+    "test": "NODE_ENV=testing ava -c 1",
     "server": "nodemon src/server.ts",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "tsc -p .",
@@ -37,7 +37,10 @@
   "ava": {
     "files": [
       "dist/tests/*.js",
-      "dist/tests/**/*.js"
+      "dist/tests/test.js",
+      "dist/tests/**/*.js",
+      "src/tests/**/*.ts",
+      "src/tests/{_test,_exrc}*.ts"
     ]
   }
 }
