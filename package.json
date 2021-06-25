@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "proxy": "http://localhost:3001",
+  "type": "module",
   "scripts": {
     "test": "NODE_ENV=testing ava -c 1",
     "server": "nodemon src/server.ts",
