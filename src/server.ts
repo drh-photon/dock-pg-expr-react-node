@@ -1,6 +1,21 @@
 //Dependencies
 import express, { Application, Request, Response, NextFunction } from 'express';
+import { createConnection } from 'net';
 import path from 'path';
+
+// let retries = 5;
+// while (retries){
+//   try {
+//     async () => await createConnection();
+//     break;
+//   } catch (err){
+//     console.log(err);
+//     retries -= 1;
+//     console.log(`retries left: ${retries}`);
+//     async () =>  await new Promise(res => setTimeout(res, 5000))
+//   }
+// }
+
 
 const app: Application = express();
 const func = require('./simple/func');
@@ -52,7 +67,6 @@ app.get('/api/customers', (req: Request, res: Response, next: NextFunction) => {
       ];
      res.send(customers);
 });
-
 
 //Start the Server
 const PORT = process.env.PORT || 3001;
